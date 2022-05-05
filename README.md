@@ -13,4 +13,7 @@ The classification is made between happyness or sadness, even tough the network 
 
 To run the network on your test sentence, just type "python test.py --load_model True --test_model True --sentence "your sentence here!"
 
+DOWNLOAD THE DATASET HERE https://www.kaggle.com/datasets/kazanova/sentiment140
+And put it in the same folder as the code 
+
 
