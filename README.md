@@ -1,5 +1,5 @@
 # TRANSFORMERS FROM SCRATCH 
-
+Pytorch implementation of transformer architecture as described in the paper "[Attetion is all you need]"(https://arxiv.org/pdf/1706.03762.pdf)
 A repo where I try to build transformer architecture, havily based upon online tutorials.
 Upon others, I mention the awesome [video](https://www.youtube.com/watch?v=U0s0f995w14&t=913s) of Aladdin Pearsson, which brought me to this equally awesome [guide](http://peterbloem.nl/blog/transformers) on transformers and the attention mechanism. 
 I also thank Peter bloem for his [repository](https://github.com/pbloem/former), where there is a similar implementation, and from which I took inspiration for some little details. 
