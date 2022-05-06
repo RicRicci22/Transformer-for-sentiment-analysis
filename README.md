@@ -28,6 +28,6 @@ python test.py --load_model True
 ```
 To run the network on your test sentence, just type
 ```bash
-python test.py --load_model True --test_model True --sentence "your sentence here!
+python test.py --load_model True --test_model True --sentence "your sentence here!"
 ```
 
