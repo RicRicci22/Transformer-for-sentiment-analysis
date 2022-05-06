@@ -1,8 +1,10 @@
 # TRANSFORMERS FROM SCRATCH 
 
 A repo where I try to build transformer architecture, havily based upon online tutorials.
-Upon others, I mention the awesome video of Aladdin Pearsson https://www.youtube.com/watch?v=U0s0f995w14&t=913s, which brought me to this also awesome guide on transformers and the attention mechanism http://peterbloem.nl/blog/transformers. 
+Upon others, I mention the awesome [video](https://www.youtube.com/watch?v=U0s0f995w14&t=913s) of Aladdin Pearsson, which brought me to this also awesome guide on transformers and the attention mechanism http://peterbloem.nl/blog/transformers. 
 I also thank https://github.com/pbloem/former, where there are similar implementation, and from which I took inspiration for some little details. 
+
+## What are transformers?
 
 A transformer layer can be thought as a box which takes in input a series of elements (in this case words), and computes intermediate results as a weighted sum of the inputs. A transformer is usually a concatenation of several transformer layers, which produces words embedding considering the semantic and positions of the words in the original sentence. 
 It is then up to the downstream goal to handle these representations to perform the desired task.
