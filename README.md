@@ -1,8 +1,8 @@
 # TRANSFORMERS FROM SCRATCH 
 
 A repo where I try to build transformer architecture, havily based upon online tutorials.
-Upon others, I mention the awesome [video](https://www.youtube.com/watch?v=U0s0f995w14&t=913s) of Aladdin Pearsson, which brought me to this also awesome guide on transformers and the attention mechanism http://peterbloem.nl/blog/transformers. 
-I also thank https://github.com/pbloem/former, where there are similar implementation, and from which I took inspiration for some little details. 
+Upon others, I mention the awesome [video](https://www.youtube.com/watch?v=U0s0f995w14&t=913s) of Aladdin Pearsson, which brought me to this equally awesome [guide](http://peterbloem.nl/blog/transformers) on transformers and the attention mechanism. 
+I also thank Peter bloem for his [repository](https://github.com/pbloem/former), where there is a similar implementation, and from which I took inspiration for some little details. 
 
 ## What are transformers?
 
@@ -15,7 +15,10 @@ The classification is made between happyness or sadness, even tough the network 
 
 To run the network on your test sentence, just type "python test.py --load_model True --test_model True --sentence "your sentence here!"
 
-DOWNLOAD THE DATASET HERE https://www.kaggle.com/datasets/kazanova/sentiment140
-And put it in the same folder as the code 
+## Dataset  
+The dataset that will be used is called Sentiment140, and it comprises 1.6 million tweets, labeled as containing negative or positive sentiment. 
+The dataset can be found [HERE](https://www.kaggle.com/datasets/kazanova/sentiment140). It is a csv file, and should be put in the same folder that contains the code.
+
+
 
 
