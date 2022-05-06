@@ -21,7 +21,6 @@ if __name__=="__main__":
     
     # Define transforms to convert input to numbers 
     text_transform = lambda x: [voc['<BOS>']] + [voc[token] for token in x] + [voc['<EOS>']]
-    #text_inverse_transform = lambda x: ''.join([])
     label_transform = lambda x: int(x/4) # CUSTOM 
 
     def collate_batch(batch):
@@ -35,29 +34,30 @@ if __name__=="__main__":
         
         return pad_sequence(text_list, padding_value=3.0, batch_first=True), torch.tensor(label_list).type(torch.LongTensor)
     
-    model = Transformer_sentiment(len(voc),3.0,max_len=1000,embed_size=args.hidden_dim)
+    model = Transformer_sentiment(len(voc),3.0,max_len=1000,embed_size=args.hidden_dim,modality=args.mode)
     
     if(torch.cuda.is_available()):
-        print('Model to CUDA!')
+        # print('Model to CUDA!')
         model = model.cuda()
         
     # Optimizer initialization
     if(args.load_model):
         # Load the network
-        model = load_model(model,'weights_mean.pt')
+        if(args.mode == 'max'):
+            model = load_model(model,'weights_max.pt')
+        elif(args.mode == 'mean'):
+            model = load_model(model,'weights_mean.pt')
         model = model.eval()
         
         if(args.test):
             sentence = from_sentence_to_tensor(args.sentence,voc)
             out=model(sentence)
             out = torch.exp(out).squeeze()
-            print(out)
-            out = torch.argmax(out)
-            print(out)
-            if(out):
-                print('You are probably happy!')
+            argmax = torch.argmax(out)
+            if(argmax):
+                print('Im '+str(round(out[argmax].item()*100,0))+'% sure that you are happy! :)')
             else:
-                print('You are probably sad.. ')
+                print('Im '+str(round(out[argmax].item()*100,0))+'% sure that you are sad.. :(')
         else:
             testloader = DataLoader(test_split,batch_sampler=batch_sampler(test_split,1),collate_fn=collate_batch)
             print('\n###########  Calculating test accuracy  ###########\n')

@@ -71,10 +71,10 @@ class TransformerBlock(nn.Module):
         return out
 
 class Encoder(nn.Module):
-    def __init__(self,src_vocab_size,embed_size,n_layers,heads,device,forward_exp,dropout,max_length,max_pool=True) -> None:
+    def __init__(self,src_vocab_size,embed_size,n_layers,heads,device,forward_exp,dropout,max_length,modality) -> None:
         super(Encoder, self).__init__()
         self.embed_size = embed_size
-        self.max_pool = max_pool
+        self.modality = modality
         self.device = device
         self.word_embedding = nn.Embedding(src_vocab_size,embed_size)
         self.pos_embedding = nn.Embedding(max_length,embed_size)
@@ -99,9 +99,9 @@ class Encoder(nn.Module):
             out = layer(out,out,out,mask)
         
         # To do sentiment analysis I max pool or average over the encoded embeddings
-        if self.max_pool:
+        if self.modality=='max':
             out = torch.amax(out,dim=1)
-        else:
+        elif self.modality=='mean':
             out = torch.mean(out, dim=1)
 
         out = self.linear(out)
@@ -202,10 +202,11 @@ class Transformer_sentiment(nn.Module):
                  heads=8,
                  dropout=0.1,
                  device="cuda",
-                 max_len=100) -> None:
+                 max_len=100, 
+                 modality='max') -> None:
         super(Transformer_sentiment,self).__init__()
         
-        self.encoder = Encoder(src_vocab_size,embed_size,num_layers,heads,device,forward_expansion,dropout,max_len)
+        self.encoder = Encoder(src_vocab_size,embed_size,num_layers,heads,device,forward_expansion,dropout,max_len,modality)
         
         self.src_pad_idx = src_pad_idx
         self.device = device

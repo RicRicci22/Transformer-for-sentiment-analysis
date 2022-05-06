@@ -52,7 +52,7 @@ def prepare_data(file, test=0.3, val=0.1):
     # Set default inex 
     voc.set_default_index(voc['<unk>'])
     
-    print("The length of the vocab is", len(voc))
+    #print("The length of the vocab is", len(voc))
     
     return train_split, test_split, val_split, voc
 
@@ -67,6 +67,7 @@ def parameter_parser():
     parser.add_argument("--load_model", dest="load_model", type=bool, default=False)
     parser.add_argument("--sentence", dest="sentence", type=str, default="Bored at work")      
     parser.add_argument("--test_model", dest="test", type=bool, default=False)
+    parser.add_argument("--modality", dest="mode", type=str, default='max')
     return parser.parse_args()
 
             
