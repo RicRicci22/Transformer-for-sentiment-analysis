@@ -18,8 +18,16 @@ The dataset that will be used is called Sentiment140, and it comprises 1.6 milli
 The dataset can be found [HERE](https://www.kaggle.com/datasets/kazanova/sentiment140). It is a csv file, and should be put in the same folder that contains the code.
 
 ## How to use the code 
-To run training, simply use 'python test.py'
-To evaluate the model on the test set use 'python test.py --load_model True'
-To run the network on your test sentence, just type 'python test.py --load_model True --test_model True --sentence "your sentence here!'
-
+To run training, simply use 
+```bash
+python test.py
+```
+To evaluate the model on the test set use 
+```bash
+python test.py --load_model True
+```
+To run the network on your test sentence, just type
+```bash
+python test.py --load_model True --test_model True --sentence "your sentence here!
+```
 
