@@ -30,4 +30,16 @@ To run the network on your test sentence, just type
 ```bash
 python test.py --load_model True --test_model True --sentence "your sentence here!"
 ```
+## Pretrained weights
+
+In the folder you can find pretrained weights for the two fusion modalities, namely max-pool and average. The defaul modality is max-pooling, to experiment with averaging mode you can add the --modality mean option when invoking python. 
+The weights have been trained using these hyperparameters
+```bash
+torch.manual_seed(45)
+np.random.seed(45)
+Optimizer: adam 
+Learning rate: 0.0001
+Loss function: NNL loss 
+N. epochs: 10
+```
 
