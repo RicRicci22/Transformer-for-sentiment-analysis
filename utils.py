@@ -22,9 +22,20 @@ def batch_sampler(train_list,batch_size):
         # yield indices for current batch
         for i in range(0, len(pooled_indices), batch_size):
             yield pooled_indices[i:i + batch_size]
+            
+def create_vocab(train_split,min_freq=100):
+    counter = Counter()
+    for (_, line) in train_split:
+        counter.update(line)
+        
+    voc = vocab(counter, min_freq=min_freq, specials=('<unk>', '<BOS>', '<EOS>', '<PAD>'))
+    # Set default inex 
+    voc.set_default_index(voc['<unk>'])
+    
+    return voc
 
     
-def prepare_data(file, test=0.3, val=0.1):
+def create_splits(file, test=0.3, val=0.1):
     # Function that tokenize the sentences, create a vocabulary and return datasets for train, val and test 
     # Define the tokenizer 
     tokenizer = get_tokenizer('basic_english')
@@ -44,17 +55,7 @@ def prepare_data(file, test=0.3, val=0.1):
     # Divide in train-val 
     train_split, val_split = train_test_split(train_split,test_size=val)
     
-    counter = Counter()
-    for (_, line) in train_split:
-        counter.update(line)
-        
-    voc = vocab(counter, min_freq=100, specials=('<unk>', '<BOS>', '<EOS>', '<PAD>'))
-    # Set default inex 
-    voc.set_default_index(voc['<unk>'])
-    
-    #print("The length of the vocab is", len(voc))
-    
-    return train_split, test_split, val_split, voc
+    return train_split, test_split, val_split
 
 def parameter_parser():
 
