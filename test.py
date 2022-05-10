@@ -17,8 +17,11 @@ if __name__=="__main__":
     np.random.seed(45)
     device = "cuda"
     
-    train_split,test_split,val_split = create_splits(r'training.1600000.processed.noemoticon.csv')
-    voc = create_vocab(train_split,100)
+    if(args.test):
+        voc = load_vocab()
+    else:
+        train_split,test_split,val_split = create_splits(r'training.1600000.processed.noemoticon.csv')
+        voc = create_vocab(train_split,100)
     
     # Define transforms to convert input to numbers 
     text_transform = lambda x: [voc['<BOS>']] + [voc[token] for token in x] + [voc['<EOS>']]

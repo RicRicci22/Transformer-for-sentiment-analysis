@@ -23,6 +23,14 @@ def batch_sampler(train_list,batch_size):
         for i in range(0, len(pooled_indices), batch_size):
             yield pooled_indices[i:i + batch_size]
             
+def load_vocab():
+    try:
+        with open('vocabulary.pkl','rb') as file:
+            voc = pickle.load(file)
+        return voc
+    except:
+        print('Vocabulary not found, run "python test.py --load_model True" to create it!')
+            
 def create_vocab(train_split,min_freq=100):
     counter = Counter()
     for (_, line) in train_split:
@@ -31,6 +39,9 @@ def create_vocab(train_split,min_freq=100):
     voc = vocab(counter, min_freq=min_freq, specials=('<unk>', '<BOS>', '<EOS>', '<PAD>'))
     # Set default inex 
     voc.set_default_index(voc['<unk>'])
+    
+    with open('vocabulary.pkl','wb') as file:
+        pickle.dump(voc,file)
     
     return voc
 
@@ -90,9 +101,3 @@ def from_sentence_to_tensor(sentence,voc):
         return pad_sequence(processed_text, padding_value=3.0, batch_first=True).cuda()
         
     return pad_sequence(processed_text, padding_value=3.0, batch_first=True)
-    
-
-if __name__=="__main__":
-    train_split,test_split,val_split,voc = prepare_data(r'training.1600000.processed.noemoticon.csv')
-    tensore = from_sentence_to_tensor('Gerry scotti is soo cool!',voc)
-    print(tensore)
