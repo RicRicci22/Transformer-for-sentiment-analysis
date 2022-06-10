@@ -217,26 +217,6 @@ class Transformer_sentiment(nn.Module):
         enc_src = self.encoder(src,src_mask)
         
         return enc_src
-    
-    
-        
 
-# if __name__=="__main__":
-#     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-    
-#     x = torch.tensor([[1,5,6,7,8,4,5,6,3,5],[1,5,6,7,8,5,6,2,3,5]]).to(device)
-#     y = torch.tensor([[1,5,6,7,8],[1,5,6,7,8]]).to(device)
-    
-#     src_pad_idx = 0
-#     trg_pad_idx = 0
-#     src_vocab_size = 10
-#     trg_vocab_size = 10
-    
-#     model = Transformer(src_vocab_size,trg_vocab_size,src_pad_idx,trg_pad_idx).to(device)
-#     #print(y[:,1:])
-#     print(x.shape)
-#     out = model(x,y[:,1:])
-    
-#     print(out.shape)
 
     

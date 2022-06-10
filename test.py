@@ -63,14 +63,13 @@ if __name__=="__main__":
             else:
                 print('Im '+str(round(out[argmax].item()*100,0))+'% sure that you are sad.. :(')
         else:
-            testloader = DataLoader(test_split,batch_sampler=batch_sampler(test_split,1),collate_fn=collate_batch)
+            testloader = DataLoader(test_split,batch_sampler=batch_sampler(test_split,128),collate_fn=collate_batch)
             print('\n###########  Calculating test accuracy  ###########\n')
             true_positive=torch.tensor(0).to(device)
             with torch.no_grad():
                 for j, datatest in enumerate(tqdm(testloader)):
                     X,y = datatest
                     out = model(X)
-                    print(torch.exp(out))
                     argmax = torch.argmax(out,dim=1)
                     true_positive+=torch.sum((argmax==y))
                 testaccuracy = true_positive/len(test_split)
@@ -84,7 +83,7 @@ if __name__=="__main__":
         for e in range(args.num_epochs):
             trainloader = DataLoader(train_split,batch_sampler=batch_sampler(train_split,128),collate_fn=collate_batch)
             epoch_loss = 0
-            for i, data in enumerate(tqdm(iter(trainloader))):
+            for i, data in enumerate(iter(tqdm(trainloader))):
                 X,y = data
                 out = model(X)
                 loss = loss_fn(out,y)
