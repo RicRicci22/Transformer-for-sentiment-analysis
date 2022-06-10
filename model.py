@@ -29,10 +29,6 @@ class SelfAttention(nn.Module):
         K = self.keys(K)
         Q = self.queries(Q)
         
-        # print(Q.shape)
-        # print(K.shape)
-        # print('\n')
-        
         output = torch.einsum("nqhd,nkhd->nhqk",[Q,K])
         # Query shape: (N,query_len,heads,heads_dim)
         # Keys shape: (N,key_len,heads,heads_dim)
