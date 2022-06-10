@@ -47,3 +47,7 @@ Loss function: NNL loss
 N. epochs: 10
 ```
 
+
+
+## COMING SOON 
+I will update the code to support multiple language sentiment analysis in the future
