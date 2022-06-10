@@ -1,4 +1,4 @@
-# TRANSFORMERS FROM SCRATCH 
+# TRANSFORMERS FOR SENTIMENT ANALYSIS
 Pytorch implementation of transformer architecture as described in the paper [Attention is all you need](https://arxiv.org/pdf/1706.03762.pdf).
 
 A repo where I try to build transformer architecture, havily based upon online tutorials.
